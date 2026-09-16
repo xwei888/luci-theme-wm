@@ -4,9 +4,9 @@
  </div>
  <dialog class="nt-search-dialog" id="nt-search-dialog" aria-labelledby="nt-search-title"><div class="nt-search-head"><span data-nt-icon="search"></span><label for="nt-search-input" id="nt-search-title" class="nt-sr-only">{{ _('Search menu') }}</label><input id="nt-search-input" type="search" placeholder="{{ _('Search menu') }}…" autocomplete="off"><button class="nt-icon-button" id="nt-search-close" aria-label="{{ _('Close') }}">Esc</button></div><div id="nt-search-results"></div><div class="nt-search-footer">↑ ↓ {{ _('Navigate') }} <span>↵ {{ _('Open') }}</span></div></dialog>
  {# Version the wm menu request; shared LuCI modules keep their firmware version. #}
- <script>(function(){var v=L.env.resource_version;try{L.env.resource_version=(v||'')+'-wm-1.13.23';L.require('menu-wm');}finally{L.env.resource_version=v;}})();</script>
+ <script>(function(){var v=L.env.resource_version;try{L.env.resource_version=(v||'')+'-wm-1.13.24';L.require('menu-wm');}finally{L.env.resource_version=v;}})();</script>
 {% endif %}
- <script src="{{ media }}/theme.js?v=1.13.23"></script>
- {% if (!blank_page && join('/', ctx.request_path) == 'admin/wm/home'): %}<script src="{{ media }}/home.js?v=1.13.23"></script>{% endif %}
+ <script src="{{ media }}/theme.js?v=1.13.24"></script>
+ {% if (!blank_page && join('/', ctx.request_path) == 'admin/wm/home'): %}<script src="{{ media }}/home.js?v=1.13.24"></script>{% endif %}
 </body>
 </html>

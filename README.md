@@ -2,7 +2,7 @@
 
 为 OpenWrt LuCI 制作的现代暗黑主题。石墨黑背景、薄荷绿强调色、可折叠侧栏、响应式内容区，以及简洁的居中登录界面。
 
-**当前版本：1.13.23-1 · 软件包架构：all · 许可证：Apache-2.0**
+**当前版本：1.13.24-1 · 软件包架构：all · 许可证：Apache-2.0**
 
 ## 界面预览
 
@@ -24,8 +24,8 @@
 
 在 [最新 Release](https://github.com/xwei888/luci-theme-wm/releases/latest) 页面下载：
 
-- `luci-theme-wm_1.13.23-1_all.ipk`：安装包。
-- `luci-theme-wm-1.13.23-source.tar.gz`：对应版本源码。
+- `luci-theme-wm_1.13.24-1_all.ipk`：安装包。
+- `luci-theme-wm-1.13.24-source.tar.gz`：对应版本源码。
 - `SHA256SUMS`：文件校验值。
 
 安装方法见下方「安装与启用」，版本变化见 [CHANGELOG.md](CHANGELOG.md)。
@@ -75,7 +75,7 @@
 将发行包上传到路由器 `/tmp`，运行：
 
 ```sh
-opkg install /tmp/luci-theme-wm_1.13.23-1_all.ipk
+opkg install /tmp/luci-theme-wm_1.13.24-1_all.ipk
 uci set luci.main.mediaurlbase='/luci-static/wm'
 uci commit luci
 ```

@@ -207,6 +207,14 @@ html.nt-restoring-scroll .wm #maincontent {visibility:hidden;}
 .wm input[type=checkbox],.wm input[type=radio] {accent-color:var(--nt-accent);cursor:pointer;}
 .wm input::placeholder,.wm textarea::placeholder {color:var(--nt-dim);}
 .wm input:disabled,.wm select:disabled,.wm button:disabled {opacity:.45;cursor:not-allowed;}
+/* Restyle the native stepper without replacing number input behavior.
+   Touch devices, forced colors and other engines keep their native controls. */
+@media (hover:hover) and (pointer:fine) and (forced-colors:none) {
+ .wm input[type=number]::-webkit-inner-spin-button {appearance:none;opacity:1;width:24px;height:24px;margin:0;margin-inline-start:6px;border-inline-start:1px solid #2e4149;border-radius:4px;background:#18252b url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2399b5b1' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 9 3-3 3 3m-6 6 3 3 3-3'/%3E%3C/svg%3E") center/24px 24px no-repeat;cursor:pointer;}
+ .wm input[type=number]:hover:not(:disabled):not([readonly])::-webkit-inner-spin-button {background-color:#213d35;border-color:#47695e;}
+ .wm input[type=number]:active:not(:disabled):not([readonly])::-webkit-inner-spin-button {background-color:#2b4d41;}
+ .wm input[type=number]:is(:disabled,[readonly])::-webkit-inner-spin-button {opacity:.4;cursor:default;}
+}
 /* Keep the real select and its events. Browsers with a customizable picker
    get the same menu surface as LuCI; other browsers retain their native list. */
 .wm select:is(:not([size]),[size="1"]):not([multiple]):not(.lv-dropdown-container select) {--focus-color-rgb:90,171,152;--nt-select-arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2396aaaF' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 7.5 5 5 5-5'/%3E%3C/svg%3E");appearance:none;background-image:var(--nt-select-arrow);background-position:right 11px center;background-size:16px;background-repeat:no-repeat;padding:7px 34px 7px 11px;margin-right:0;border-radius:8px;line-height:20px;}

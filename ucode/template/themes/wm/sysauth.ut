@@ -1,7 +1,7 @@
 {% include('header', { blank_page: true, is_login_page: true }) %}
 <main class="nt-login-layout">
  <section class="nt-login-card" aria-label="{{ _('Log in') }}">
- <div class="nt-login-brand"><img src="{{ media }}/logo.svg?v=1.13.23" width="40" height="40" alt=""></div>
+ <div class="nt-login-brand"><img src="{{ media }}/logo.svg?v=1.13.24" width="40" height="40" alt=""></div>
  <form method="post" class="nt-login-form">
   <label for="luci_username">{{ _('Username') }}</label><input name="luci_username" id="luci_username" type="text" autocomplete="username" value="{{ entityencode(duser, true) }}" required>
   <label for="luci_password">{{ _('Password') }}</label><div class="nt-password-wrap"><input name="luci_password" id="luci_password" type="password" autocomplete="current-password" required autofocus><button type="button" id="nt-password-toggle" aria-label="{{ _('Show password') }}" aria-controls="luci_password" aria-pressed="false" data-label-show="{{ _('Show password') }}" data-label-hide="{{ _('Hide password') }}" data-nt-icon="eye"></button></div>
