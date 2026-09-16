@@ -1,0 +1,16 @@
+wm LuCI theme (formerly Nocturne)
+Copyright 2026 Nocturne contributors
+Licensed under the Apache License, Version 2.0.
+
+The base.css compatibility layer is derived from LuCI Bootstrap:
+Copyright 2012 Nut & Bolt, David Menting
+Copyright 2011 Twitter, Inc.
+https://github.com/openwrt/luci/tree/master/themes/luci-theme-bootstrap
+
+Header integration is derived from LuCI Bootstrap:
+Copyright 2008 Steven Barth
+Copyright 2012 David Menting
+Copyright 2008-2022 Jo-Philipp Wich
+
+The Nocturne layout, navigation, login view, design tokens, icons,
+status cards, responsive styles and interactions are new additions.

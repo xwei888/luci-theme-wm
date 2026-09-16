@@ -1,0 +1,8 @@
+#!/bin/sh
+[ -n "$IPKG_INSTROOT" ] && exit 0
+uci -q get luci.themes >/dev/null || uci set luci.themes=internal
+uci -q delete luci.themes.Nocturne
+uci -q delete luci.themes.Wanmei
+uci set luci.themes.wm='/luci-static/wm'
+uci commit luci
+exit 0

@@ -1,0 +1,15 @@
+{
+  "admin/wm": {
+    "firstchild_ineligible": true
+  },
+  "admin/wm/home": {
+    "title": "Home",
+    "action": {
+      "type": "template",
+      "path": "admin_status/index"
+    },
+    "depends": {
+      "acl": [ "luci-mod-status-index" ]
+    }
+  }
+}

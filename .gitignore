@@ -1,0 +1,19 @@
+# Local validation notes and device-specific artifacts
+/QA.md
+/qa/
+/backups/
+/.tools/
+/.reference/
+
+# Build output and local credentials
+/dist/
+*.ipk
+*.tar.gz
+.env
+.env.*
+*.pem
+*.key
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db

@@ -1,0 +1,75 @@
+{# wm LuCI theme. Copyright 2026. Apache-2.0.
+   Header integration derived from LuCI Bootstrap, Copyright 2008 Steven Barth,
+   2012 David Menting, 2008-2022 Jo-Philipp Wich. Apache-2.0. #}
+{%
+ import { getuid, getspnam } from 'luci.core';
+ const boardinfo = ubus.call('system', 'board');
+ const current_title = is_login_page ? _('Log in') : (dispatched?.title ? _(dispatched.title) : null);
+ const breadcrumb_titles = [];
+ if (!blank_page) {
+  if (join('/', ctx.request_path) == 'admin/wm/home') {
+   push(breadcrumb_titles, _('Home'));
+  }
+  else {
+   let crumb_node = dispatcher.menu_json();
+   for (let index, segment in (ctx.path ?? ctx.request_path)) {
+    crumb_node = crumb_node?.children?.[segment];
+    if (!crumb_node) break;
+    if (index > 0 && crumb_node.title) push(breadcrumb_titles, striptags(_(crumb_node.title)));
+   }
+  }
+  if (!length(breadcrumb_titles)) push(breadcrumb_titles, striptags(_(dispatched?.title ?? 'Overview')));
+ }
+ http.prepare_content('text/html; charset=UTF-8');
+-%}
+<!DOCTYPE html>
+<html lang="{{ dispatcher.lang }}" data-darkmode="true">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="theme-color" content="#0e1116">
+ <meta name="darkreader-lock">
+ <meta name="robots" content="noindex,nofollow">
+ <title>{{ entityencode(`${boardinfo.hostname ?? 'OpenWrt'}${current_title ? ` | ${striptags(current_title)}` : ''}`, true) }}</title>
+ <link rel="icon" href="{{ media }}/logo.svg?v=1.1.0" type="image/svg+xml">
+ <link rel="stylesheet" href="{{ media }}/base.css?v=1.0.0">
+ {% if (node?.css): %}<link rel="stylesheet" href="{{ resource }}/{{ node.css }}">{% endif %}
+ {% if (css): %}<style>{{ css }}</style>{% endif %}
+ <link rel="stylesheet" href="{{ media }}/cascade.css?v=1.13.23">
+ {% if (!blank_page && join('/', ctx.request_path) == 'admin/wm/home'): %}<link rel="stylesheet" href="{{ media }}/home.css?v=1.13.23">{% endif %}
+ <script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
+ <script src="{{ resource }}/cbi.js?v={{ version.luciversion }}"></script>
+</head>
+<body class="wm lang_{{ dispatcher.lang }} {{ blank_page ? 'nt-blank' : 'nt-app' }}" data-page="{{ entityencode(join('-', ctx.request_path), true) }}">
+{% if (!blank_page): %}
+ <script>(function(){try{if(!matchMedia('(max-width:900px)').matches&&localStorage.getItem('wm.sidebar')==='collapsed')document.body.classList.add('nt-sidebar-collapsed');}catch(e){}})();</script>
+ <a class="nt-skip" href="#maincontent">{{ _('Skip to content') }}</a>
+ <aside class="nt-sidebar" id="nt-sidebar" aria-label="{{ _('Main navigation') }}">
+  <a class="nt-brand" href="{{ dispatcher.build_url('admin/wm/home') }}">
+   <img src="{{ media }}/logo.svg?v=1.1.0" alt="" width="38" height="38">
+   <span class="nt-brand-text"><strong title="{{ entityencode(boardinfo.hostname ?? 'OpenWrt', true) }}">{{ entityencode(boardinfo.hostname ?? 'OpenWrt', true) }}</strong><small>NETWORK CONSOLE</small></span>
+  </a>
+  <nav id="nt-navigation" aria-label="{{ _('Main menu') }}"><div class="nt-nav-loading" role="status" aria-label="{{ _('Loading…') }}"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></div></nav>
+  <div class="nt-sidebar-bottom"><span class="nt-avatar">R</span><div><strong>{{ entityencode(ctx.authuser ?? 'root', true) }}</strong><small>{{ _('Administration') }}</small></div><a href="{{ dispatcher.build_url('admin/logout') }}" title="{{ _('Log out') }}" aria-label="{{ _('Log out') }}" class="nt-icon-button" data-nt-icon="logout"></a></div>
+ </aside>
+ <button class="nt-backdrop" aria-label="{{ _('Close menu') }}" tabindex="-1"></button>
+ <div class="nt-workspace">
+  <header class="nt-topbar">
+   <div class="nt-topbar-left"><button class="nt-icon-button" id="nt-menu-toggle" aria-controls="nt-sidebar" aria-expanded="true" aria-label="{{ _('Toggle navigation') }}" data-nt-icon="panel"></button><nav class="nt-breadcrumb" aria-label="{{ entityencode('当前位置：' + join(' › ', breadcrumb_titles), true) }}"><a class="nt-crumb-host" href="{{ dispatcher.build_url('admin/wm/home') }}" title="{{ entityencode(boardinfo.hostname ?? 'OpenWrt', true) }}">{{ striptags(boardinfo.hostname ?? 'OpenWrt') }}</a><i aria-hidden="true"></i><div id="nt-current-page"><ol class="nt-crumb-trail">
+    {% for (let index, title in breadcrumb_titles): %}
+    {% const last = index == length(breadcrumb_titles) - 1; %}
+    <li class="{{ last ? 'nt-crumb-last' : 'nt-crumb-parent' }}"><span{% if (last): %} aria-current="page"{% endif %} title="{{ entityencode(title, true) }}">{{ entityencode(title, true) }}</span></li>
+    {% endfor %}
+   </ol></div></nav></div>
+   <div class="nt-topbar-right"><button class="nt-search-trigger" id="nt-search-open" aria-label="搜索菜单" title="搜索菜单 (Ctrl K)"><span data-nt-icon="search"></span><span class="nt-search-label">搜索菜单</span><kbd>Ctrl K</kbd></button><div id="indicators"></div></div>
+  </header>
+  <main id="maincontent" class="container" tabindex="-1">
+   <h1 class="nt-sr-only">{{ join('/', ctx.request_path) == 'admin/wm/home' ? _('Home') : _(dispatched?.title ?? 'Overview') }}</h1>
+   <div id="nt-metrics" hidden></div>
+   {% if (getuid() == 0 && getspnam('root')?.pwdp === ''): %}
+   <div class="alert-message warning"><h4>{{ _('No password set!') }}</h4><p>{{ _('There is no password set on this router. Please configure a root password to protect the web interface.') }}</p><a class="btn" href="{{ dispatcher.build_url('admin/system/admin') }}">{{ _('Go to password configuration...') }}</a></div>
+   {% endif %}
+   {% if (boardinfo.rootfs_type == 'initramfs'): %}<div class="alert-message warning"><h4>{{ _('System running in recovery (initramfs) mode.') }}</h4><p>{{ _('No changes to settings will be stored and are lost after rebooting. This mode should only be used to install a firmware upgrade') }}</p></div>{% endif %}
+   <noscript><div class="alert-message warning">{{ _('You must enable JavaScript in your browser or LuCI will not work properly.') }}</div></noscript>
+   <div id="tabmenu" style="display:none"></div>
+{% endif %}
