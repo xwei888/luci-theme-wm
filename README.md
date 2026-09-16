@@ -14,24 +14,11 @@
 
 ![wm 首页概览：深色侧栏、状态指标、端口和系统资源卡片](docs/screenshots/overview.png)
 
-### 登录与菜单搜索
+### 登录界面
 
-<table>
-  <tr>
-    <th width="50%">简洁登录页</th>
-    <th width="50%">快捷菜单搜索</th>
-  </tr>
-  <tr>
-    <td><a href="docs/screenshots/login.png"><img src="docs/screenshots/login.png" alt="wm 居中登录卡片与密码显隐按钮"></a></td>
-    <td><a href="docs/screenshots/menu-search.png"><img src="docs/screenshots/menu-search.png" alt="wm 菜单搜索：网络分类与匹配结果"></a></td>
-  </tr>
-</table>
+居中登录卡片，搭配薄荷绿按钮与简洁的密码显隐控件。
 
-### 手机布局
-
-状态卡片与端口信息随屏幕宽度自动排列。
-
-<a href="docs/screenshots/mobile.png"><img src="docs/screenshots/mobile.png" width="320" alt="wm 手机界面：双列状态卡片和纵向端口列表"></a>
+![wm 登录界面：居中卡片、密码显隐控件与薄荷绿登录按钮](docs/screenshots/login.png)
 
 ## 下载
 
