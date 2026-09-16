@@ -9,11 +9,12 @@
  --border-color-high:#424d5f; --border-color-medium:var(--nt-line); --border-color-low:#232a35;
  --primary-color-high:var(--nt-accent); --primary-color-medium:#47cbb1; --primary-color-low:#36b99f; --on-primary-color:#092a23;
  --success-color-high:#5de4c7; --success-color-medium:#3bb99f; --success-color-low:#27866f; --on-success-color:#092a23;
- --font-sans:Inter,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+ /* Use the platform font locally; never download or bundle Apple font files. */
+ --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
  --font-mono:"Cascadia Code",Consolas,monospace; color-scheme:dark;
 }
 html {background:var(--nt-bg);scroll-behavior:auto;scrollbar-color:#465765 transparent;scrollbar-width:thin;}
-body.wm {margin:0;padding:0;background:var(--nt-bg);color:var(--nt-text);font:13px/1.65 var(--font-sans);min-width:0;overflow-y:auto;scrollbar-color:#394353 transparent;}
+body.wm {margin:0;padding:0;background:var(--nt-bg);color:var(--nt-text);font:400 13px/1.65 var(--font-sans);font-kerning:normal;font-optical-sizing:auto;letter-spacing:normal;min-width:0;overflow-y:auto;scrollbar-color:#394353 transparent;}
 /* Style only the page scrollbar; retain native scrolling and a wider drag area.
    Non-auto standard properties override WebKit scrollbar pseudo-elements. */
 @media (hover:hover) and (pointer:fine) and (forced-colors:none) {
@@ -161,7 +162,7 @@ html.nt-restoring-scroll .wm #maincontent {visibility:hidden;}
 .nt-metric:nth-child(2) .nt-metric-icon {color:#b1a8e1;background:#2d2940;border-color:#3b3454;}
 .nt-metric:nth-child(3) .nt-metric-icon {color:#88b5da;background:#223342;border-color:#2c4359;}
 .nt-metric:nth-child(4) .nt-metric-icon {color:#dbba81;background:#383020;border-color:#4a3d29;}
-.nt-metric-value {color:var(--nt-text);font-size:27px;line-height:1.3;font-weight:550;letter-spacing:-1px;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.nt-metric-value {color:var(--nt-text);font-size:27px;line-height:1.3;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap;}
 .nt-metric-value small {font-size:11px;color:var(--nt-muted);font-weight:400;letter-spacing:0;margin-left:5px;}
 .nt-metric-note {font-size:10px;color:var(--nt-dim);margin-top:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .nt-meter {height:3px;background:#28313e;border-radius:3px;margin-top:15px;overflow:hidden;}
@@ -170,9 +171,9 @@ html.nt-restoring-scroll .wm #maincontent {visibility:hidden;}
 .nt-metric:nth-child(4) .nt-meter span {background:#d0ae70;}
 .nt-sparkline {height:23px;width:100%;overflow:visible;display:block;margin-top:9px;}
 .nt-sparkline polyline {fill:none;stroke:#afa0df;stroke-width:1.8;vector-effect:non-scaling-stroke;}
-.wm h2 {font-size:19px;font-weight:550;color:var(--nt-text);letter-spacing:-.4px;line-height:1.5;margin:0 0 19px;padding:0;}
+.wm h2 {font-size:20px;font-weight:600;color:var(--nt-text);letter-spacing:0;line-height:1.5;margin:0 0 19px;padding:0;}
 .wm #maincontent>h2 {display:none;}
-.wm h3 {font-size:13px;font-weight:550;color:#d8e1ed;padding:0;line-height:1.5;letter-spacing:0;}
+.wm h3 {font-size:13px;font-weight:600;color:#d8e1ed;padding:0;line-height:1.5;letter-spacing:0;}
 .wm h4 {font-size:12px;color:#c7d2e1;}
 .wm .cbi-map-descr,.wm .cbi-section-descr {font-size:12px;color:var(--nt-muted);line-height:1.9;}
 .wm .cbi-section,.wm .cbi-tblsection {background:var(--nt-panel);border:1px solid var(--nt-line);border-radius:12px;padding:21px 23px;margin:0 0 20px;box-shadow:0 2px 3px #00000009;min-width:0;}
@@ -200,7 +201,7 @@ html.nt-restoring-scroll .wm #maincontent {visibility:hidden;}
 .wm.nt-overview #view>.cbi-section:first-child .td:first-child {color:var(--nt-dim);width:32%!important;}
 .wm .cbi-value {padding:13px 0;margin-bottom:8px;border-color:var(--nt-line);background:transparent;}
 .wm[data-page="admin-system-system"] .cbi-map>h2:first-child {display:none;}
-.wm .cbi-value-title {color:#c0ccda;font-size:12px;}
+.wm .cbi-value-title {color:#c0ccda;font-size:13px;}
 .wm .cbi-value-description {color:var(--nt-dim);font-size:11px;margin-top:8px;}
 .wm input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]):not([type=reset]),.wm select,.wm textarea,.wm .cbi-dropdown:not(.btn):not(.cbi-button) {background:#10161e;color:var(--nt-text);border:1px solid #344051;border-radius:7px;box-shadow:none;min-height:35px;transition:border-color .18s,box-shadow .18s;}
 .wm input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]):not([type=reset]):focus,.wm select:focus,.wm textarea:focus {border-color:#5aab98;box-shadow:0 0 0 3px #5de4c712;outline:none;}
@@ -422,7 +423,7 @@ html.nt-restoring-scroll .wm #maincontent {visibility:hidden;}
 .nt-login-brand {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin-bottom:28px;text-align:center;}
 .nt-login-brand img {border-radius:12px;flex-shrink:0;}
 .nt-login-form {margin:0;}
-.nt-login-form>label {display:block;font-size:12px;color:#a7b7b1;margin-bottom:8px;margin-top:18px;}
+.nt-login-form>label {display:block;font-size:13px;line-height:20px;color:#a7b7b1;margin-bottom:8px;margin-top:18px;}
 .nt-login-form>label:first-child {margin-top:0;}
 .wm .nt-login-form input {--focus-color-rgb:89,185,158;display:block;width:100%;height:46px;border:1px solid #34433f;border-radius:9px;background:#10171bd9;padding:10px 14px;font-size:13px;}
 .wm .nt-login-form input:focus {border-color:#59b99e;box-shadow:0 0 0 3px #5de4c70c;}

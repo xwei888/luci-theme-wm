@@ -9,7 +9,7 @@
 .wm.nt-overview .nt-metric:hover {transform:translateY(-4px);border-color:#4b665b;box-shadow:0 12px 28px #0003;}
 .wm.nt-overview .nt-metric-head {font-size:11px;margin-bottom:8px;}
 .wm.nt-overview .nt-metric-icon {width:28px;height:28px;border-radius:8px;}
-.wm.nt-overview .nt-metric-value {display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 6px;font-size:27px;font-weight:600;letter-spacing:-1px;line-height:1.3;}
+.wm.nt-overview .nt-metric-value {display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 6px;font-size:27px;font-weight:600;letter-spacing:-.02em;line-height:1.3;}
 .wm.nt-overview #nt-value-up {font-size:25px;}
 .wm.nt-overview .nt-metric-value small {margin-left:0;font-size:10px;}
 .wm.nt-overview .nt-metric-note {color:#809096;font-size:10px;line-height:1.5;margin-top:7px;}
@@ -69,7 +69,7 @@
 .nt-port-glyph {width:25px;height:25px;flex-shrink:0;fill:none;stroke:#79c9b2;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;}
 .nt-port-speed {min-width:0;}
 .nt-port-speed-value {color:#e0eceb;font-size:23px;font-weight:500;line-height:1.25;letter-spacing:-.6px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;}
-.nt-port-speed-value strong {font:inherit;font-weight:550;}
+.nt-port-speed-value strong {font:inherit;font-weight:600;}
 .nt-port-speed-value small {font-size:11px;letter-spacing:0;font-weight:400;color:#8d9eab;margin-left:5px;}
 .wm.nt-overview .nt-port-card .nt-port-network-row {position:relative;justify-self:start;display:block!important;width:fit-content;min-width:0;min-height:20px;max-width:100%;padding:0;border:0;background:transparent!important;font-weight:400;}
 .nt-port-traffic {position:relative;}
@@ -103,7 +103,7 @@
 .wm.nt-overview .nt-network-content>.network-status-table {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px;min-width:0;margin:0;}
 .wm.nt-overview .nt-network-content .nt-uplink-card {container:wm-uplink / inline-size;display:block;min-width:0;max-width:100%;margin:0;padding:15px;border:1px solid #303c47;border-radius:10px;background:#151c24;white-space:normal;text-align:left;box-shadow:none;}
 .wm.nt-overview .nt-uplink-card>.nt-uplink-head {display:flex;align-items:center;gap:8px;justify-content:space-between;padding:0 0 13px;border:0;background:transparent!important;color:#d8e6eb!important;text-align:left;font-size:12px;}
-.nt-uplink-head>strong {font-weight:550;}
+.nt-uplink-head>strong {font-weight:600;}
 .wm.nt-overview .nt-uplink-card>.ifacebox-body {display:block;height:auto;padding:0;border:0;background:transparent;font-size:12px;}
 .wm.nt-overview .nt-uplink-card .nt-uplink-fields {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 18px;margin:0;min-width:0;height:auto;flex:none;}
 .nt-uplink-fields>br,.nt-uplink-device br {display:none;}
