@@ -4,6 +4,35 @@
 
 **当前版本：1.13.23-1 · 软件包架构：all · 许可证：Apache-2.0**
 
+## 界面预览
+
+以下为实际主题界面截图，设备信息与运行数值已替换为演示数据。点击图片可查看原图。
+
+### 首页概览
+
+石墨黑背景、薄荷绿侧栏，以及运行状态、网络端口和系统资源卡片。
+
+![wm 首页概览：深色侧栏、状态指标、端口和系统资源卡片](docs/screenshots/overview.png)
+
+### 登录与菜单搜索
+
+<table>
+  <tr>
+    <th width="50%">简洁登录页</th>
+    <th width="50%">快捷菜单搜索</th>
+  </tr>
+  <tr>
+    <td><a href="docs/screenshots/login.png"><img src="docs/screenshots/login.png" alt="wm 居中登录卡片与密码显隐按钮"></a></td>
+    <td><a href="docs/screenshots/menu-search.png"><img src="docs/screenshots/menu-search.png" alt="wm 菜单搜索：网络分类与匹配结果"></a></td>
+  </tr>
+</table>
+
+### 手机布局
+
+状态卡片与端口信息随屏幕宽度自动排列。
+
+<a href="docs/screenshots/mobile.png"><img src="docs/screenshots/mobile.png" width="320" alt="wm 手机界面：双列状态卡片和纵向端口列表"></a>
+
 ## 下载
 
 在 [最新 Release](https://github.com/xwei888/luci-theme-wm/releases/latest) 页面下载：

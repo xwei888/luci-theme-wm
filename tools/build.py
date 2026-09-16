@@ -70,7 +70,7 @@ package.write_bytes(tar_bytes([(name,content,0o644) for name,content in members]
 with tarfile.open(out/'luci-theme-wm-source.tar.gz','w:gz') as tar:
     # Keep local QA, device backups, credentials and Git metadata out of releases.
     public_files=['Makefile','README.md','CHANGELOG.md','LICENSE','NOTICE','.gitignore','.gitattributes']
-    for folder in ['htdocs','root','ucode','tools']:
+    for folder in ['htdocs','root','ucode','tools','docs']:
         public_files.extend(path.relative_to(source).as_posix()
                             for path in (source/folder).rglob('*')
                             if path.is_file() and '__pycache__' not in path.parts
