@@ -290,7 +290,23 @@
   if(!document.body.dataset.page?.startsWith('admin-services-passwall2'))return;
   function place(panel,display) {
    if(!panel||!display||panel.style.display==='none')return;
+   if(panel.style.display==='block')delete panel._wmOpenHeight;
    panel.classList.add('nt-node-dropdown');
+   panel.style.display='flex';
+   var list=panel.querySelector('[id$=".list"]');
+   if(list&&!list.dataset.wmScroll){
+    list.dataset.wmScroll='1';
+    // The plugin's outer wheel handler checks panel.scrollTop. The list now
+    // owns scrolling, so let its native wheel action run without that handler.
+    list.addEventListener('wheel',function(event){event.stopPropagation();},{passive:true});
+   }
+   if(list){
+    var search=panel.querySelector('.lv-dropdown-search'),empty=list.querySelector('.nt-node-empty');
+    var noMatch=search&&search.value.trim()&&!Array.from(list.querySelectorAll('li[data-key]')).some(function(item){return item.getClientRects().length;});
+    if(noMatch&&!empty){empty=document.createElement('p');empty.className='nt-node-empty';empty.setAttribute('role','status');empty.textContent=/^zh(?:-|_|$)/i.test(document.documentElement.lang)?'未找到匹配的节点':'No matching nodes';list.appendChild(empty);}
+    if(empty)empty.hidden=!noMatch;
+   }
+   if(panel.scrollTop)panel.scrollTop=0;
    var rect=display.getBoundingClientRect(),viewport=window.visualViewport;
    var left=viewport?viewport.offsetLeft:0,top=viewport?viewport.offsetTop:0;
    var width=Math.min(document.documentElement.clientWidth,viewport?viewport.width:innerWidth);
@@ -302,11 +318,17 @@
    panel.style.maxWidth=Math.max(1,width-edge*2)+'px';
    panel.style.width=Math.min(Math.max(rect.width,320),Math.max(1,width-edge*2))+'px';
    panel.style.maxHeight=Math.max(1,Math.min(360,height-edge*2))+'px';
+   panel.style.height='auto';
+   panel._wmOpenHeight=Math.max(panel._wmOpenHeight||0,panel.offsetHeight);
    var below=Math.max(0,top+height-edge-rect.bottom-gap),above=Math.max(0,rect.top-upper-gap);
-   // Prefer a shorter, scrollable list below the field. Flip only when there
-   // is too little room to use it there, rather than trying to fit every node.
-   var upwards=below<Math.min(160,panel.offsetHeight)&&above>below;
+   // Allow room for the search field, a group heading and several nodes.
+   // Keep direction independent of filtered results to avoid jumping sides
+   // while typing, and prefer below whenever it has usable space.
+   var upwards=below<280&&above>below;
    panel.style.maxHeight=Math.max(1,Math.min(360,upwards?above:below))+'px';
+   // Keep the search box still when filtering or collapsing groups. A newly
+   // opened menu measures its content again, so short menus remain compact.
+   panel.style.height=Math.max(1,Math.min(panel._wmOpenHeight,upwards?above:below))+'px';
    var x=Math.max(left+edge,Math.min(rect.left,left+width-edge-panel.offsetWidth));
    var y=upwards?rect.top-gap-panel.offsetHeight:rect.bottom+gap;
    panel.style.left=x+'px';

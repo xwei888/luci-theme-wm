@@ -3,7 +3,7 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=wm dark theme
 LUCI_DEPENDS:=+luci-base
 LUCI_PKGARCH:=all
-PKG_VERSION:=1.13.27
+PKG_VERSION:=1.13.28
 PKG_RELEASE:=1
 PKG_LICENSE:=Apache-2.0
 PKG_MAINTAINER:=wm contributors

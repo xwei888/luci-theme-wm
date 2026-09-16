@@ -35,9 +35,9 @@
  <link rel="stylesheet" href="{{ media }}/base.css?v=1.0.0">
  {% if (node?.css): %}<link rel="stylesheet" href="{{ resource }}/{{ node.css }}">{% endif %}
  {% if (css): %}<style>{{ css }}</style>{% endif %}
- <link rel="stylesheet" href="{{ media }}/cascade.css?v=1.13.27">
- {% if (!blank_page && join('/', ctx.request_path) == 'admin/wm/home'): %}<link rel="stylesheet" href="{{ media }}/home.css?v=1.13.27">{% endif %}
- {% if (!blank_page && join('/', ctx.request_path) == 'admin/system/package-manager'): %}<link rel="stylesheet" href="{{ media }}/package-manager.css?v=1.13.27">{% endif %}
+ <link rel="stylesheet" href="{{ media }}/cascade.css?v=1.13.28">
+ {% if (!blank_page && join('/', ctx.request_path) == 'admin/wm/home'): %}<link rel="stylesheet" href="{{ media }}/home.css?v=1.13.28">{% endif %}
+ {% if (!blank_page && join('/', ctx.request_path) == 'admin/system/package-manager'): %}<link rel="stylesheet" href="{{ media }}/package-manager.css?v=1.13.28">{% endif %}
  <script src="{{ dispatcher.build_url('admin/translations', dispatcher.lang) }}"></script>
  <script src="{{ resource }}/cbi.js?v={{ version.luciversion }}"></script>
 </head>

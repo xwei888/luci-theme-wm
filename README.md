@@ -2,7 +2,7 @@
 
 为 OpenWrt LuCI 制作的现代暗黑主题。石墨黑背景、薄荷绿强调色、可折叠侧栏、响应式内容区，以及简洁的居中登录界面。
 
-**当前版本：1.13.27-1 · 软件包架构：all · 许可证：Apache-2.0**
+**当前版本：1.13.28-1 · 软件包架构：all · 许可证：Apache-2.0**
 
 ## 界面预览
 
@@ -24,8 +24,8 @@
 
 在 [最新 Release](https://github.com/xwei888/luci-theme-wm/releases/latest) 页面下载：
 
-- `luci-theme-wm_1.13.27-1_all.ipk`：安装包。
-- `luci-theme-wm-1.13.27-source.tar.gz`：对应版本源码。
+- `luci-theme-wm_1.13.28-1_all.ipk`：安装包。
+- `luci-theme-wm-1.13.28-source.tar.gz`：对应版本源码。
 - `SHA256SUMS`：文件校验值。
 
 安装方法见下方「安装与启用」，版本变化见 [CHANGELOG.md](CHANGELOG.md)。
@@ -39,6 +39,7 @@
 - 使用设备本地字体：苹果设备优先系统字体，Windows 使用 Segoe UI 与微软雅黑；无需下载字体文件。
 - 软件包管理页采用分组工具区、独立磁盘用量说明和紧凑分页；窄屏显示软件包卡片，保留筛选、排序与原生操作流程。
 - 软件包上传弹窗采用紧凑的文件信息区与底部操作栏，长文件名自动换行，上传进度独立显示百分比。
+- PassWall 2 节点菜单固定搜索栏，选项列表独立滚动；根据可用空间展开，搜索时保持位置并显示无匹配提示。
 - 独立主题目录，保留 LuCI 的菜单权限、表单、验证、保存与应用机制。
 - 侧栏折叠、分组展开动画、当前页面高亮；收起后点击分组打开侧边浮层，跳转后保持折叠，长菜单可滚动，支持方向键和 Esc。手机使用抽屉菜单与键盘焦点管理。移除 WORKSPACE 标题，收起时保留可见退出按钮。
 - `Ctrl + K` / `⌘ + K` 搜索菜单，支持方向键和 Enter。
@@ -78,7 +79,7 @@
 将发行包上传到路由器 `/tmp`，运行：
 
 ```sh
-opkg install /tmp/luci-theme-wm_1.13.27-1_all.ipk
+opkg install /tmp/luci-theme-wm_1.13.28-1_all.ipk
 uci set luci.main.mediaurlbase='/luci-static/wm'
 uci commit luci
 ```
