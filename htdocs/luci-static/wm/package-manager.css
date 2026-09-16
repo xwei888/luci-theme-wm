@@ -1,0 +1,84 @@
+/* Package manager only. Keep LuCI's controls, data updates and event targets. */
+.wm #view>h2 {margin-bottom:8px;}
+.wm #view>.cbi-map-descr {display:flex;flex-direction:column;gap:4px;margin:0 0 20px;}
+.wm #view>.cbi-map-descr>br {display:none;}
+.wm #view>.cbi-map-descr>span:has(strong) {color:#bda982;font-size:11px;}
+.wm #view>.cbi-map-descr>span:has(strong) a {color:#d8bd83;text-decoration:underline;text-underline-offset:3px;}
+
+/* Search and installation share a row; maintenance and language filters follow. */
+.wm #view>.controls:has(#disk-space-label) {display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px 24px;margin:0 0 22px;padding:20px;border:1px solid #2b3640;border-radius:12px;background:#171e26;}
+.wm #view>.controls:has(#disk-space-label)>div {display:block;min-width:0;padding:0;white-space:normal;}
+.wm #view>.controls:has(#disk-space-label)>div>label {display:block;min-width:0;margin:0 0 8px;color:#a5b5c2;font-size:12px;line-height:20px;}
+.wm #view>.controls>div:has(#disk-space-label) {grid-column:1/-1;padding-bottom:16px;border-bottom:1px solid #2a3640;}
+.wm #view>.controls>div:has(#action-label) {grid-column:2;grid-row:3;}
+.wm #view>.controls>div:has(input[name=filter_i18n]) {grid-column:1;grid-row:3;}
+.wm #view>.controls .control-group {display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0;width:100%;}
+.wm #view>.controls .control-group>input {flex:1 1 120px;width:0;min-width:0;height:36px;padding:7px 11px;margin:0;}
+.wm #view>.controls .control-group>.btn {flex:0 0 auto;min-height:36px;margin:0;padding:8px 12px;white-space:normal;}
+.wm #view>.controls input[name=filter] {padding-left:33px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%238399a8' stroke-width='1.5' stroke-linecap='round'%3E%3Ccircle cx='8.5' cy='8.5' r='5.5'/%3E%3Cpath d='m13 13 4 4'/%3E%3C/svg%3E");background-position:10px center;background-size:15px;background-repeat:no-repeat;}
+.wm #view>.controls>div:has(input[name=filter_i18n])>div {display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:0;}
+.wm #view>.controls label:has(>input[name=filter_i18n]) {display:inline-flex;align-items:center;gap:7px;min-height:36px;margin:0;padding:7px 10px;border:1px solid #2e3c47;border-radius:7px;color:#93a6b6;background:#131b23;font-size:11px;line-height:20px;cursor:pointer;}
+.wm #view>.controls label:has(>input[name=filter_i18n]:checked) {color:#a5ebd5;background:#20362f;border-color:#426959;}
+.wm #view>.controls label:has(>input[name=filter_i18n]):hover {border-color:#56776b;}
+.wm #view>.controls input[name=filter_i18n] {flex:0 0 auto;margin:0;}
+
+/* The native title updates with storage usage; keep its text below the thin bar. */
+.wm #view>.controls .cbi-progressbar {display:flex;flex-direction:column;gap:8px;min-width:0;min-height:0;height:auto;margin:0;border:0;border-radius:0;background:linear-gradient(#293740,#293740) left top/100% 6px no-repeat;overflow:visible;}
+.wm #view>.controls .cbi-progressbar>div {height:6px;min-height:6px;border-radius:4px;background:#69c7aa;font-size:0;line-height:0;}
+.wm #view>.controls .cbi-progressbar::before {position:static;order:1;display:block;width:100%;padding:0;white-space:normal;overflow:visible;text-align:left;text-shadow:none;color:#91a6b4;font-size:11px;line-height:1.7;}
+
+.wm #view>.cbi-tabmenu.mode {margin:0 0 12px;}
+.wm #view>.controls:has(>.pager) {margin:12px 0;}
+.wm #view>.controls>.pager {display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;max-width:100%;padding:0;white-space:normal;}
+.wm #view>.controls>.pager>.text {order:0;flex:1 1 auto;min-width:0;padding-right:12px;color:#8ea3b2;font-size:12px;line-height:1.7;text-align:left;}
+.wm #view>.controls>.pager>.btn {display:grid;place-items:center;flex:0 0 36px;width:36px;min-width:36px;height:34px;min-height:34px;padding:0;margin:0;border-color:#334550;border-radius:8px;background:#1b2933;color:#b5cecd;font-size:0;}
+.wm #view>.controls>.pager>.prev {order:1;}
+.wm #view>.controls>.pager>.next {order:2;}
+.wm #view>.controls>.pager>.btn::before {content:'';display:block;width:14px;height:14px;background:currentColor;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 4 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;pointer-events:none;}
+.wm #view>.controls>.pager>.prev::before {transform:rotate(180deg);}
+.wm #view>.controls>.pager>.btn:hover:not(:disabled) {background:#264237;border-color:#4d7a68;color:#a7f0d8;}
+.wm #view>.controls>.pager>.btn:disabled {opacity:.35;}
+
+/* Versions wrap within their column; descriptions remain fully available. */
+.wm #view>.nt-table-scroll:has(>#packages) {border:1px solid #2c3944;border-radius:10px;background:#151d26;margin:0;}
+.wm #view #packages {table-layout:fixed;min-width:640px;}
+.wm #view #packages :is(.th,.td) {padding:12px 14px;border-color:#29343f;line-height:1.7;}
+.wm #view #packages .th {background:#1c2933;color:#9aafbf;font-size:11px;}
+.wm #view #packages .th:first-child {width:20%;}
+.wm #view #packages .th.version {width:17%;}
+.wm #view #packages .th.size {width:100px;white-space:nowrap;}
+.wm #view #packages .th.cbi-section-actions {width:92px;}
+.wm #view #packages .td:first-child {color:#d7e7e8;font-weight:500;}
+.wm #view #packages .td.version {white-space:normal;color:#91a5b5;font-size:11px;overflow-wrap:anywhere;}
+.wm #view #packages .td.size {color:#a5b9c8;font-size:11px;font-variant-numeric:tabular-nums;}
+.wm #view #packages .td:nth-child(4) {color:#a8b7c5;font-size:12px;overflow-wrap:anywhere;}
+.wm #view #packages .tr:hover>.td {background:#1b2a32;}
+.wm #view #packages .td.cbi-section-actions>.btn {display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:6px 11px;margin:0;font-size:11px;line-height:18px;white-space:nowrap;}
+.wm #view #packages .tr.placeholder>.td {position:static;padding:28px 16px;text-align:center;color:#90a5b4;font-weight:400;}
+
+@container wm-content (max-width:850px) {
+ .wm #view>.controls:has(#disk-space-label) {grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;}
+ .wm #view>.controls>div:has(#action-label) {grid-column:1/-1;grid-row:auto;padding-top:14px;border-top:1px solid #2a3640;}
+ .wm #view>.controls>div:has(input[name=filter_i18n]) {grid-column:1/-1;grid-row:3;}
+}
+@container wm-content (max-width:600px) {
+ .wm #view>.controls:has(#disk-space-label) {grid-template-columns:minmax(0,1fr);padding:16px;}
+ .wm #view>.controls>div:has(input[name=filter_i18n]),.wm #view>.controls>div:has(#action-label) {grid-column:1;grid-row:auto;}
+ .wm #view>.controls .control-group>.btn {padding-inline:10px;}
+ .wm #view>.nt-table-scroll:has(>#packages) {border:0;border-radius:0;background:none;overflow:visible;}
+ .wm #view #packages {display:block;min-width:0;}
+ .wm #view #packages>tbody {display:block;}
+ .wm #view #packages .tr {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 14px;margin-bottom:10px;padding:14px;border:1px solid #2c3944;border-radius:10px;background:#151d26;}
+ .wm #view #packages .tr.cbi-section-table-titles {display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;padding:0;border:0;border-radius:0;background:none;}
+ .wm #view #packages .tr>.th {display:block;flex:0 0 auto;width:auto;padding:5px 8px;border:1px solid #2c3944;border-radius:6px;background:#18232d;font-size:10px;}
+ .wm #view #packages .tr>.th.cbi-section-actions {display:none;}
+ .wm #view #packages .tr>.td {display:block;width:auto;min-width:0;padding:0;border:0;background:none;}
+ .wm #view #packages .td::before {display:none;}
+ .wm #view #packages .td:first-child {grid-column:1;grid-row:1;align-self:center;font-size:13px;overflow-wrap:anywhere;}
+ .wm #view #packages .td.version {grid-column:1;grid-row:2;}
+ .wm #view #packages .td.size {grid-column:2;grid-row:2;text-align:right!important;}
+ .wm #view #packages .td.version::before {display:inline;content:attr(data-title) ' ';color:#6f8799;}
+ .wm #view #packages .td:nth-child(4) {grid-column:1/-1;grid-row:3;}
+ .wm #view #packages .td.cbi-section-actions {grid-column:2;grid-row:1;}
+ .wm #view #packages .tr.placeholder>.td {grid-column:1/-1;grid-row:auto;padding:14px 0;}
+}
