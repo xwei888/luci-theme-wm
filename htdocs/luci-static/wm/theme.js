@@ -243,6 +243,49 @@
    decorate();
   }).catch(function(){});
  }
+ function initPackageUpload() {
+  if(!window.L||document.body.dataset.page!=='admin-system-package-manager')return;
+  L.require('ui').then(function(){
+   var overlay=document.querySelector('#modal_overlay');if(!overlay)return;
+   function decorate() {
+    var modal=overlay.firstElementChild;if(!modal)return;
+    var heading=modal.querySelector(':scope>h4');
+    var input=modal.querySelector('input[type="file"]');
+    var progress=modal.querySelector(':scope>.cbi-progressbar');
+    var uploading=heading&&heading.textContent===_('Uploading file…')&&progress&&modal.children.length===2;
+    if(!input&&!uploading){
+     if(modal.getAttribute('aria-labelledby')==='nt-upload-title')modal.removeAttribute('aria-labelledby');
+     if(modal.getAttribute('aria-describedby')==='nt-upload-description')modal.removeAttribute('aria-describedby');
+     return;
+    }
+    if(!heading)return;
+    if(input&&!modal.classList.contains('nt-package-upload')){
+     var body=modal.querySelector(':scope>p'),browse=input.parentElement;
+     var controls=browse.parentElement,actions=controls.querySelector(':scope>.right');
+     if(!body||!actions)return;
+     /* Keep the native input, its following button and the original action
+        targets: LuCI uses their sibling relationship and event handlers. */
+     var file=document.createElement('div');file.className='nt-upload-file';
+     controls.before(file);file.append(body,browse);controls.classList.add('nt-upload-footer');
+     body.id='nt-upload-description';body.setAttribute('aria-live','polite');
+     heading.textContent=_('Upload Package…').replace(/(?:…|\.\.\.)$/,'');
+     modal.classList.add('nt-package-upload');
+     modal.setAttribute('aria-describedby',body.id);
+    }
+    if(uploading){
+     if(!modal.classList.contains('nt-package-upload'))modal.classList.add('nt-package-upload','nt-upload-progress');
+     modal.removeAttribute('aria-describedby');
+     progress.setAttribute('role','progressbar');
+     progress.setAttribute('aria-label',_('Uploading file…'));
+     progress.setAttribute('aria-valuemin','0');progress.setAttribute('aria-valuemax','100');
+     progress.setAttribute('aria-valuenow',String(Math.max(0,Math.min(100,parseFloat(progress.title)||0))));
+    }
+    heading.id='nt-upload-title';modal.setAttribute('aria-labelledby',heading.id);
+   }
+   new MutationObserver(decorate).observe(overlay,{childList:true,subtree:true,attributes:true,attributeFilter:['class','title']});
+   decorate();
+  }).catch(function(){});
+ }
  function initPasswallDropdowns() {
   if(!document.body.dataset.page?.startsWith('admin-services-passwall2'))return;
   function place(panel,display) {
@@ -567,5 +610,5 @@
   form.addEventListener('submit',function(){var button=form.querySelector('[type=submit]');button.disabled=true;button.querySelector('span').textContent='登录中…';});
  }
  document.addEventListener('wm-menu-ready',function(){icons();initMetrics();});
- initScrollRestoration();initShell();login();initMetrics();initTooltips();initTables();initTabs();initPartexp();initPasswallStatus();initPasswallDropdowns();initSaveNotices();initApplyStatus();initRealtime();initDhcp();
+ initScrollRestoration();initShell();login();initMetrics();initTooltips();initTables();initTabs();initPartexp();initPasswallStatus();initPasswallDropdowns();initSaveNotices();initApplyStatus();initPackageUpload();initRealtime();initDhcp();
 })();

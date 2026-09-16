@@ -5,7 +5,7 @@
 
 return baseclass.extend({
  __init__: function() {
-  var menuVersion = '1.13.26';
+  var menuVersion = '1.13.27';
   if (session.getLocalData('wm.menu.version') !== menuVersion) {
    // LuCI keeps menu data in both the current module and the browser session.
    ui.menu.flushCache();

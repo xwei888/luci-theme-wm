@@ -1,4 +1,35 @@
 /* Package manager only. Keep LuCI's controls, data updates and event targets. */
+/* Native file selection and upload progress share a compact dialog. */
+.wm #modal_overlay:has(>.nt-package-upload) {padding:80px 16px 24px;background:#080d1480;backdrop-filter:blur(3px);}
+.wm.modal-overlay-active:has(#modal_overlay>.nt-package-upload) {overflow:hidden;}
+.wm #modal_overlay>.modal.nt-package-upload {width:min(460px,100%);max-width:100%;min-width:0;max-height:calc(100dvh - 104px);margin:0 auto;padding:22px;border:1px solid #354740;border-radius:12px;background:#171f25;box-shadow:0 18px 60px #0005;overflow:auto;animation:none;}
+.wm .nt-package-upload>h4 {margin:0 0 16px;font-size:15px;font-weight:600;line-height:22px;color:#e2ecef;}
+.wm .nt-upload-file {display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px;border:1px solid #2d3c45;border-radius:9px;background:#111a21;}
+.wm .nt-upload-file::before {content:'';grid-column:1;grid-row:1;width:24px;height:28px;background:#87baad;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 28' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H5a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9z M14 2v7h7 M12 21V13m-4 4 4-4 4 4'/%3E%3C/svg%3E") center/contain no-repeat;}
+.wm .nt-upload-file>p {grid-column:2;grid-row:1;min-width:0;margin:0;color:#a9bdc8;font-size:12px;line-height:1.8;overflow-wrap:anywhere;}
+.wm .nt-upload-file>p>ul {list-style:none;margin:0;padding:0;}
+.wm .nt-upload-file>p>ul>li {margin:0;padding:0;}
+.wm .nt-upload-file>p>ul>li:first-child {color:#d4e5e6;}
+.wm .nt-upload-file>p>ul>li+li {margin-top:4px;color:#849ca9;font-size:11px;}
+.wm .nt-upload-file>.left {grid-column:3;grid-row:1;min-width:0;}
+.wm .nt-package-upload .btn {min-height:34px;margin:0;padding:7px 12px;font-size:12px;line-height:18px;white-space:normal;}
+.wm .nt-upload-file .btn {border-color:#3b534f;background:#1c302d;color:#a4d9ca;}
+.wm .nt-upload-file .btn:hover {border-color:#568774;background:#244239;color:#d2f6e9;}
+.wm .nt-package-upload>.nt-upload-footer {display:block!important;margin-top:18px;padding-top:16px;border-top:1px solid #2b3840;}
+.wm .nt-upload-footer>.right {display:flex;align-items:center;justify-content:flex-end;gap:8px;min-width:0;}
+.wm .nt-upload-footer .btn {min-width:68px;}
+.wm .nt-upload-footer .cbi-button-action:disabled {border-color:#304d45;background:#223b33;color:#73998b;opacity:1;cursor:not-allowed;}
+.wm #modal_overlay>.modal.nt-upload-progress {padding:20px 22px;}
+.wm .nt-upload-progress>.cbi-progressbar {display:flex;flex-direction:column;gap:10px;min-width:0;height:auto;margin:0;padding:0;border:0;border-radius:0;background:linear-gradient(#293b40,#293b40) left top/100% 6px no-repeat;overflow:visible;}
+.wm .nt-upload-progress>.cbi-progressbar>div {height:6px;min-height:6px;border-radius:4px;background:#5de4c7;font-size:0;line-height:0;}
+.wm .nt-upload-progress>.cbi-progressbar::before {position:static;order:1;display:block;width:100%;padding:0;color:#9db9ba;font-size:12px;line-height:20px;text-align:right;text-shadow:none;font-variant-numeric:tabular-nums;}
+@media(max-width:480px) {
+ .wm #modal_overlay:has(>.nt-package-upload) {padding:64px 12px 16px;}
+ .wm #modal_overlay>.modal.nt-package-upload {max-height:calc(100dvh - 80px);padding:18px;}
+ .wm .nt-upload-file {grid-template-columns:24px minmax(0,1fr);gap:10px 12px;}
+ .wm .nt-upload-file>.left {grid-column:2;grid-row:2;justify-self:start;}
+}
+
 .wm #view>h2 {margin-bottom:8px;}
 .wm #view>.cbi-map-descr {display:flex;flex-direction:column;gap:4px;margin:0 0 20px;}
 .wm #view>.cbi-map-descr>br {display:none;}
