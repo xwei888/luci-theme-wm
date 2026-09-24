@@ -38,7 +38,7 @@ for name in ['NOTICE','LICENSE']:
     data.append(('usr/share/doc/luci-theme-wm/'+name,(source/name).read_bytes(),0o644))
 
 control=f'''Package: luci-theme-wm
-Version: 1.13.28-1
+Version: 1.13.29-1
 Architecture: all
 Maintainer: wm contributors
 Section: luci
@@ -65,7 +65,7 @@ uci commit luci
 exit 0
 '''
 members=[('debian-binary',b'2.0\n'),('control.tar.gz',tar_bytes([('control',control.encode(),0o644),('postinst',postinst.encode(),0o755),('prerm',prerm.encode(),0o755)])),('data.tar.gz',tar_bytes(data))]
-package=out/'luci-theme-wm_1.13.28-1_all.ipk'
+package=out/'luci-theme-wm_1.13.29-1_all.ipk'
 package.write_bytes(tar_bytes([(name,content,0o644) for name,content in members]))
 with tarfile.open(out/'luci-theme-wm-source.tar.gz','w:gz') as tar:
     # Keep local QA, device backups, credentials and Git metadata out of releases.
